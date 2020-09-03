@@ -12,6 +12,13 @@ public enum ErrorMessageEnum {
     ,SOMETHING_WENT_WRONG("0-0001", "Something went wrong", "Something went wrong.")
     ,NULL_POINTER_EXCEPTION("0-0002", "NullPointer Exception","Something went wrong.")
     ,RUNTIME_EXCEPTION("0-0003", "Runtime Exception","Runtime Exception")
+    ,SUBSCRIPTION_AMOUNT_CANNOT_BE_EMPTY("1-0001","Subscription amount can not be empty","Subscription amount can not be empty")
+    ,SUBSCRIPTION_TYPE_CANNOT_BE_EMPTY("1-0002","Subscription type can not be empty","Subscription type can not be empty")
+    ,SUBSCRIPTION_DATE_MOTH_CANNOT_BE_EMPTY("1-0003","Subscription Date Month can not be empty","Subscription Date Month can not be empty")
+    ,SUBSCRIPTION_START_END_DATE_CANNOT_BE_EMPTY("1-0004","Subscription Star / End Date can not be empty","Subscription  Star / End Date can not be empty")
+    ,INVALID_SUBSCRIPTION_TYPE("1-0005","Invalid subscription type","Invalid subscription type")
+    ,INVALID_DATE_OF_WEEK("1-0006","Invalid  date of week","Invalid  date of week")
+    ,INVALID_SUBSCRIPTION_PERIOD("1-0007","Invalid subscription period","subscription period")
     ;
         /**
      * The error code.
