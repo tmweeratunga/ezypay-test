@@ -8,6 +8,7 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,12 +16,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.ezypay.dto.request.SubscriptionRequestDTO;
 import com.ezypay.dto.response.SubscriptionResponseDTO;
 import com.ezypay.enumerations.SubscriptionTypeEnum;
+import com.ezypay.service.helper.RequestValidationHelper;
 
 @SpringBootTest
 class SubscriptionServiceTest {
 
 	@InjectMocks
 	private SubscriptionService subscriptionService = Mockito.spy(new SubscriptionService());
+
+	@Mock
+	private RequestValidationHelper requestValidationHelper;
 
 	@Before
 	public void initializeMocks() {
