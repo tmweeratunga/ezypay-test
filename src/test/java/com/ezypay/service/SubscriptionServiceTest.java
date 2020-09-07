@@ -3,8 +3,11 @@ package com.ezypay.service;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 
+import com.ezypay.enumerations.DayOfWeeksEnum;
+import com.ezypay.util.DateManager;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -53,6 +56,7 @@ class SubscriptionServiceTest {
 		subscriptionRequestDTO.setEndDate(new Date());
 		subscriptionRequestDTO.setAmount(new BigDecimal(10));
 		subscriptionRequestDTO.setType(SubscriptionTypeEnum.WEEKLY.getCode());
+		subscriptionRequestDTO.setDayOfWeekMonth(DayOfWeeksEnum.MONDAY.getCode());
 		SubscriptionResponseDTO response = subscriptionService.addNewSubscription(subscriptionRequestDTO);
 		assertNotNull(response);
 		assertEquals(SubscriptionTypeEnum.WEEKLY.getCode(), response.getType());

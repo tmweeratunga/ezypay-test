@@ -2,6 +2,7 @@ package com.ezypay.service;
 
 import com.ezypay.dto.request.SubscriptionRequestDTO;
 import com.ezypay.dto.response.SubscriptionResponseDTO;
+import com.ezypay.enumerations.DayOfWeeksEnum;
 import com.ezypay.enumerations.SubscriptionTypeEnum;
 import com.ezypay.service.helper.RequestValidationHelper;
 import com.ezypay.util.DateManager;
@@ -26,8 +27,9 @@ public class SubscriptionService {
         response.setAmount(request.getAmount());
         response.setType(request.getType());
         if (SubscriptionTypeEnum.WEEKLY.getCode().equals(request.getType())) {
-            response.setInvoiceDate(getInvoiceDateList(request.getStartDate(),request.getEndDate(),7));
-        } else if (SubscriptionTypeEnum.WEEKLY.getCode().equals(request.getType())) {
+            Date startDate = DateManager.nextDateOfWeek(request.getStartDate(), DayOfWeeksEnum.getDayOfWeek(request.getDayOfWeekMonth()));
+            response.setInvoiceDate(getInvoiceDateList(startDate,request.getEndDate(),7));
+        } else if (SubscriptionTypeEnum.MONTHLY.getCode().equals(request.getType())) {
             response.setInvoiceDate(getInvoiceDateList(request.getStartDate(),request.getEndDate(),30));
         } else if (SubscriptionTypeEnum.DAILY.getCode().equals(request.getType())) {
             response.setInvoiceDate(getInvoiceDateList(request.getStartDate(),request.getEndDate(),1));

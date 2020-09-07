@@ -1,5 +1,7 @@
 package com.ezypay.enumerations;
 
+import java.time.DayOfWeek;
+
 public enum DayOfWeeksEnum {
     MONDAY("MONDAY","MONDAY"),
     TUESDAY("TUESDAY","TUESDAY"),
@@ -32,5 +34,24 @@ public enum DayOfWeeksEnum {
             }
         }
         return false;
+    }
+
+    public static DayOfWeek getDayOfWeek(String dayOfWeek){
+        if(MONDAY.getCode().equals(dayOfWeek)){
+            return DayOfWeek.MONDAY;
+        } else if (TUESDAY.getCode().equals(dayOfWeek)){
+            return DayOfWeek.TUESDAY;
+        } else if (WEDNESDAY.getCode().equals(dayOfWeek)){
+            return DayOfWeek.WEDNESDAY;
+        } else if (THURSDAY.getCode().equals(dayOfWeek)){
+            return DayOfWeek.THURSDAY;
+        } else if (FRIDAY.getCode().equals(dayOfWeek)){
+            return DayOfWeek.FRIDAY;
+        } else if (SATURDAY.getCode().equals(dayOfWeek)){
+            return DayOfWeek.SATURDAY;
+        } else if (SUNDAY.getCode().equals(dayOfWeek)){
+            return DayOfWeek.SUNDAY;
+        }
+        return null;
     }
 }
