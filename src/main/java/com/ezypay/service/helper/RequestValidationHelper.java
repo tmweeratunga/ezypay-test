@@ -15,30 +15,41 @@ import java.time.Period;
 @Service
 public class RequestValidationHelper {
 
-    public void validateSubscriptionRequest(SubscriptionRequestDTO request){
-        if(request.getAmount() == null){
+    public void validateSubscriptionRequest(SubscriptionRequestDTO request) {
+        if (request.getAmount() == null) {
             throw new EZYPayException(ErrorMessageEnum.SUBSCRIPTION_AMOUNT_CANNOT_BE_EMPTY.getEzypayError());
         }
-        if(StringUtils.isEmpty(request.getType())){
+        if (StringUtils.isEmpty(request.getType())) {
             throw new EZYPayException(ErrorMessageEnum.SUBSCRIPTION_TYPE_CANNOT_BE_EMPTY.getEzypayError());
         }
-        if(StringUtils.isEmpty(request.getDayOfWeekMonth())){
+        if (StringUtils.isEmpty(request.getDayOfWeekMonth())) {
             throw new EZYPayException(ErrorMessageEnum.SUBSCRIPTION_DATE_MOTH_CANNOT_BE_EMPTY.getEzypayError());
         }
-        if(request.getStartDate() == null || request.getEndDate() == null){
+        if (request.getStartDate() == null || request.getEndDate() == null) {
             throw new EZYPayException(ErrorMessageEnum.SUBSCRIPTION_START_END_DATE_CANNOT_BE_EMPTY.getEzypayError());
         }
 
-        if(DateManager.isDateAfter(request.getStartDate(),request.getEndDate(),3)){
+        if (DateManager.isDateAfter(request.getStartDate(), request.getEndDate(), 3)) {
             throw new EZYPayException(ErrorMessageEnum.INVALID_SUBSCRIPTION_PERIOD.getEzypayError());
         }
-        if(!SubscriptionTypeEnum.contains(request.getType())){
+        if (!SubscriptionTypeEnum.contains(request.getType())) {
             throw new EZYPayException(ErrorMessageEnum.INVALID_SUBSCRIPTION_TYPE.getEzypayError());
         }
-        if(SubscriptionTypeEnum.WEEKLY.getCode().equals(request.getType()) &&
-                !DayOfWeeksEnum.contains(request.getDayOfWeekMonth())){
+        if (SubscriptionTypeEnum.WEEKLY.getCode().equals(request.getType()) &&
+                !DayOfWeeksEnum.contains(request.getDayOfWeekMonth())) {
             throw new EZYPayException(ErrorMessageEnum.INVALID_DATE_OF_WEEK.getEzypayError());
         }
+        if (SubscriptionTypeEnum.MONTHLY.getCode().equals(request.getType())) {
+            if (request.getDayOfWeekMonth() == null) {
+                throw new EZYPayException(ErrorMessageEnum.INVALID_DATE_OF_WEEK.getEzypayError());
+            } else {
+                try {
+                    Integer.parseInt(request.getDayOfWeekMonth());
+                } catch (NumberFormatException e) {
+                    throw new EZYPayException(ErrorMessageEnum.INVALID_DATE_OF_WEEK.getEzypayError());
+                }
+            }
 
+        }
     }
 }

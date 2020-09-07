@@ -69,6 +69,7 @@ class SubscriptionServiceTest {
 		subscriptionRequestDTO.setEndDate(new Date());
 		subscriptionRequestDTO.setAmount(new BigDecimal(10));
 		subscriptionRequestDTO.setType(SubscriptionTypeEnum.MONTHLY.getCode());
+		subscriptionRequestDTO.setDayOfWeekMonth("20");
 		SubscriptionResponseDTO response = subscriptionService.addNewSubscription(subscriptionRequestDTO);
 		assertNotNull(response);
 		assertEquals(SubscriptionTypeEnum.MONTHLY.getCode(), response.getType());

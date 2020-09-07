@@ -30,7 +30,8 @@ public class SubscriptionService {
             Date startDate = DateManager.nextDateOfWeek(request.getStartDate(), DayOfWeeksEnum.getDayOfWeek(request.getDayOfWeekMonth()));
             response.setInvoiceDate(getInvoiceDateList(startDate,request.getEndDate(),7));
         } else if (SubscriptionTypeEnum.MONTHLY.getCode().equals(request.getType())) {
-            response.setInvoiceDate(getInvoiceDateList(request.getStartDate(),request.getEndDate(),30));
+            Date startDate = DateManager.nextDateOfMonth(request.getStartDate(),Integer.parseInt(request.getDayOfWeekMonth()));
+            response.setInvoiceDate(getInvoiceDateList(startDate,request.getEndDate(),30));
         } else if (SubscriptionTypeEnum.DAILY.getCode().equals(request.getType())) {
             response.setInvoiceDate(getInvoiceDateList(request.getStartDate(),request.getEndDate(),1));
         }

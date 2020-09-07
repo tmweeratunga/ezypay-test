@@ -1,5 +1,7 @@
 package com.ezypay.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -11,7 +13,11 @@ public class SubscriptionRequestDTO implements Serializable {
     private BigDecimal amount;
     private String type;
     private String dayOfWeekMonth;
+
+    @JsonFormat(pattern="dd/MM/yyyy")
     private Date startDate;
+
+    @JsonFormat(pattern="dd/MM/yyyy")
     private Date endDate;
 
     public BigDecimal getAmount() {

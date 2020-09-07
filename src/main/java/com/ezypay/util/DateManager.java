@@ -44,4 +44,11 @@ public class DateManager {
         ld = ld.with(TemporalAdjusters.nextOrSame(dateOfWeek));
         return Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
+
+    public static Date nextDateOfMonth(Date startDate,int date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(startDate);
+        cal.set(Calendar.DATE,date);
+        return cal.getTime();
+    }
 }
